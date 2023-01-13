@@ -1,0 +1,743 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+$dark:rgb(0, 1, 15);
+$light:#fff;
+$blue:rgb(0, 0, 255);
+
+@mixin FlexData($dis,$align,$just,$direc) {
+    display:$dis ;
+    align-items: $align;
+    justify-content: $just;
+    flex-direction: $direc;
+}
+
+@mixin  background ($ur,$att,$rep,$pos,$size) {
+    background-image: url($ur);
+    background-attachment: $att;
+    background-repeat: $rep;
+    background-position: $pos;
+    background-size: $size;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+.prev{
+    width: 100vw;
+    height: 100vh;
+    background-color: $dark;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    @include FlexData(flex,center ,center ,column );
+}
+
+.load{
+    width: 50px;
+    height: 50px;
+    border: 1px solid transparent;
+    border-top-color: $blue;
+    border-left-color: $blue;
+    border-bottom-color: $blue;
+    border-radius: 50%;
+    position: relative;
+    @include FlexData(flex,center ,center ,row );
+    animation: loader 3s infinite linear;
+}
+
+.load::before{
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid transparent;
+    border-top-color: $blue;
+    border-left-color: $blue;
+    border-bottom-color: $blue;
+    border-radius: 50%;
+    animation: loader 1s infinite linear;
+    
+}
+
+@keyframes loader{
+    0%{
+        rotate: 0deg;
+    }
+
+    100%{
+        rotate: 360deg;
+    }
+}
+
+.nav{
+    width: 200px;
+    height: 100vh;
+    background-color: $dark;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+
+.profile{
+    width: 100%;
+    height: 200px;
+    margin-top: 45px;
+    @include FlexData(flex,center ,space-around ,column );
+}
+
+.profile-pic{
+    width: 100px;
+    height: 100px;
+    @include background("pictures/black adam.jpg",scroll ,no-repeat ,center,cover );
+    border-radius: 50%;
+}
+
+.profile-name{
+    color: $light;
+    font-size: 25px;
+}
+
+.fa-brands{
+    font-size: 20px;
+
+    &.fa-facebook{
+        color: $blue;
+    }
+
+    &.fa-twitter{
+        color: cyan;
+    }
+
+    &.fa-instagram-square{
+        color:rgb(238, 11, 124);
+    }
+
+    &.fa-github{
+        color:rgb(156, 156, 156);
+    }
+
+    &.fa-linkedin-in{
+        color:rgb(40, 2, 145);
+    }
+    
+}
+
+.social-icons{
+    width: 100%;
+    @include FlexData(flex,center ,space-evenly ,row )
+}
+
+.unordered-list-1{
+    width: 100%;
+    height: 50%;
+    margin-top: 20px;
+    @include FlexData(flex,flex-start ,space-evenly ,column)
+}
+
+.list-1{
+    margin-left: 1.5rem;
+    @include FlexData(flex,center ,space-between ,row );
+    width: 100px;
+    color: $light;
+    transition: all .4s ease;
+
+    .pages{
+        color: $light;
+        text-decoration: none;
+        font-weight: 400;
+        font-family: cursive;
+    }
+
+    &:hover{
+        color: $blue;
+    }
+}
+
+.unordered-list-2{
+   display: none;
+    
+}
+
+@media(max-width:608px){
+    .nav{
+        @include FlexData(flex,center ,space-around ,row );
+        width: 100vw;
+        height: 65px;
+        background-color: $dark;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .unordered-list-1{
+        display: none;
+    }
+
+    .profile{
+        display: none;
+    }
+
+    .invisiblediv{
+        display: none;
+       
+    }
+
+    .fa-bars,.fa-x{
+        color: $light;
+        font-size: 23px;
+        z-index: 2;
+    }
+
+    .res-nav{
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: $dark;
+        @include FlexData(none,center ,space-around ,column );
+        animation: show .5s 1 alternate;
+    }
+
+
+    .profile-2{
+        width: 200px;
+        height: 200px;
+        margin-top: 10px;
+        @include FlexData(flex,center ,space-around ,column );
+    }
+
+    .unordered-list-2{
+        width: 100%;
+        height: 50%;
+        margin-top: 20px;
+        @include FlexData(flex,center ,space-evenly ,column);
+        
+    }
+
+    .logo{
+        color: $light;
+        font-size: 3rem;
+    }
+}
+
+@keyframes show{
+    0%{
+        width: 100vw;
+        height: 0;
+    }
+
+    100%{
+        width: 100vw;
+        height: 100vh
+    }
+}
+
+
+
+
+.home-page{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.invisiblediv{
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(115, 255, 0);
+   
+}
+
+.home-background{
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    @include background("pictures/black adam.jpg",scroll ,no-repeat ,center,cover );
+    color: $light;
+    align-items: center;
+}
+
+.intro-profile{
+    font-size: 3rem;
+    color: rgb(255, 255, 255);
+}
+
+.intro{
+    margin-left: 6rem;
+    box-shadow: 2px 2px 2px beige;
+    background-color: rgba(0, 0, 0, 0.726);
+}
+
+.about-page{
+    @extend .home-page;
+}
+
+.invisiblediv1{
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(115, 255, 0);
+   
+}
+
+.about-background{
+    flex: 1;
+    height: 100vh;
+    color: $light;
+    @include FlexData(flex,center ,space-evenly ,row )
+}
+
+
+
+.about-me-pic{
+    width: 350px;
+    height: 450px;
+    @include background("pictures/black adam2.png",scroll ,no-repeat ,center ,cover );
+    margin-left:10px;
+}
+
+.about-me{
+    flex: 1;
+    height: 300px;
+    color: black;
+    padding: 40px;
+}
+
+@media(max-width:1022px){
+    .about-me-pic{
+        display: flex;
+        align-items: flex-end;
+        justify-content: first baseline;
+    }
+}
+
+@media(max-width:860px){
+    .about-background{
+        flex: 1;
+        color: $light;
+        @include FlexData(flex,center ,space-around ,column )
+    }
+
+    .about-me-pic{
+        margin-top: 2rem;
+        width: 100%;
+    }
+    
+    .about-me{
+        width: 100%;
+    }
+}
+
+@media(max-width:608px){
+    .invisiblediv1{
+       display: none;
+       
+    }
+
+    .about-me-pic{
+        width: 100%;
+    }
+    
+    .about-me{
+        width: 100%;
+    }
+    
+}
+
+.lw-title{
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family:cursive;
+    margin-top: 10px;
+}
+
+.port-page{
+    display: flex;
+    width: 100vw;
+    height: 100%;
+}
+
+.invisiblediv2{
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(115, 255, 0);
+   
+}
+
+
+.port-background{
+    width: 100vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 2rem;
+    place-items: center;
+    place-content: center;
+}
+
+.latest-work-div{
+    width: 300px;
+    height: 300px;
+    @include FlexData(flex,center ,center ,column );
+    background-color: $dark;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.latest-work1{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work2.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+}
+
+.latest-work2{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work3.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+
+}
+
+.latest-work3{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work4.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+
+}
+
+.latest-work4{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work5.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+}
+
+.latest-work5{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work6.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+}
+
+.latest-work6{
+    width: 300px;
+    height: 300px;
+    @include background("pictures/work1.jpg",scroll,no-repeat ,center ,cover );
+    transition: all .5s ease;
+}
+
+@media(max-width:1140px){
+    .port-background{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:815px){
+    .port-background{
+        grid-template-columns: 1fr;
+    }
+
+    .latest-work1{
+        width: 100%;
+        transition: all .5s ease;
+
+    &:hover{
+        width: 340px;
+    }
+    }
+    
+    .latest-work2{
+        width: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            width: 340px;
+        }
+    }
+    
+    .latest-work3{
+        width: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            width: 340px;
+        }
+    }
+
+    .latest-work4{
+        width: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            width: 340px;
+        }
+    }
+    
+    .latest-work5{
+        width: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            width: 340px;
+        }
+    }
+    
+    .latest-work6{
+        width: 100%;
+        transition: all .5s ease;
+
+        &:hover{
+            width: 340px;
+        }
+    }
+}
+
+@media(max-width:450px){
+    .port-background{
+        margin-top: 4rem;
+    }
+}
+
+@media(max-width:608px){
+    .invisiblediv2{
+       display: none;
+       
+    }
+}
+
+.skills-page{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.invisiblediv3{
+    width: 240px;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0);
+   
+}
+
+.skills{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+}
+
+.skills-and-experience{
+    width: 50%;
+    height: 100vh;
+    @include FlexData(flex,flex-start ,space-around ,column );
+    padding: 20px;
+}
+
+.skill-title{
+    font-family: cursive;
+    font-size: 4rem;
+    color: $dark;
+}
+
+.skills-and-experience2{
+    width: 50%;
+    height: 100%;
+    @include FlexData(flex,flex-start ,center ,column )
+}
+
+.ratings{
+    padding: 20px;
+    width: 100%;
+    height: 300px;
+    @include FlexData(flex,flex-start ,space-around ,column )
+}
+
+.cards{
+    width: 100%;
+    height: 100%;
+    @include FlexData(flex,center,space-around ,row )
+}
+
+.card1{
+    width: 230px;
+    height: 230px;
+    background-color: rgb(8, 8, 8);
+    color: $light;
+    border-radius: 8px;
+    @include FlexData(flex,center,center ,column )
+}
+
+.card2{
+    width: 230px;
+    height: 230px;
+    background-color: rgb(8, 8, 8);
+    color: $light;
+    border-radius: 8px;
+    @include FlexData(flex,center,space-around ,column )
+}
+
+@media(max-width:1125px){
+    .skills{
+       flex-direction: column;
+    }
+
+    .skills-and-experience{
+        width: 100%;
+        height: 100vh;
+    }
+
+    .skills-and-experience2{
+        width: 100%;
+        height: 100vh;
+    }
+
+}
+
+@media(max-width:426px){
+    .cards{
+        width: 100%;
+        height: 100%;
+        @include FlexData(flex,center,space-around ,column )
+    }
+
+    .card1{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .card2{
+        width: 100%;
+        border-radius: 0;
+        margin-top: 10px;
+    }
+}
+
+@media(max-width:608px){
+    .invisiblediv3{
+        display: none;
+       
+    }
+}
+
+.contact-page{
+    display: flex;
+    width: 100vw;
+    height: 100%;
+}
+
+.invisiblediv4{
+    width: 200px;
+    height: 100vh;
+    background-color: rgba(180, 22, 22, 0);
+}
+
+
+.con{
+    flex: 1;
+    height: 100vh;
+    @include FlexData(flex,center ,center ,row )
+}
+
+.contact-info{
+    width: 30vw;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    @include FlexData(flex,left ,center,column );
+    padding: 20px;
+    box-shadow: -5px -5px 5px rgb(173, 173, 173);
+    border: 1px solid rgb(214, 214, 214);
+}
+
+.contacts{
+    width: 30vw;
+    height: 80%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px rgb(173, 173, 173);
+    border: 1px solid rgb(214, 214, 214);
+}
+
+@media(max-width:608px){
+    .invisiblediv4{
+        display: none;
+       
+    }
+}
+
+@media(max-width:886px){
+    .con{
+        flex: 1;
+        height: 100vh;
+        @include FlexData(flex,center ,center ,column );
+        margin-top:4rem;
+    } 
+
+    .contact-info{
+        width: 100%;
+        height: 80%;
+        background-color: rgb(255, 255, 255);
+    }
+    
+    .contacts{
+        width: 100%;
+        height: 80%;
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+.text-c{
+    font-weight: 900;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+.fa-envelope{
+    font-size: 43px;
+}
+
+.form{
+    @include FlexData(flex,center ,space-evenly ,column );
+}
+
+.input{
+    width: 90%;
+    height: 50px;
+    margin-top: 1rem;
+    font-size: 19px;
+    outline: none;
+    border-radius: 7px;
+    background-color: transparent;
+    padding-left: 10px;
+}
+
+.text-area{
+    width: 90%;
+    height: 200px;
+    margin-top: 1rem;
+    font-size: 19px;
+    outline: none;
+    padding-left: 10px;
+}
+
+.smb{
+    width: 90%;
+    height: 40px;
+    margin-top: 1rem;
+    font-size: 17px;
+    background-color: black;
+    color: $light;
+    border-radius: 10px;
+}
